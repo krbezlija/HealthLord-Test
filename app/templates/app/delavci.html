@@ -1,0 +1,27 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+
+    <a href="/noviDelavec"><button type="button" class="btn btn-success" name="novi" style="margin-top:5px; margin-bottom:5px;">Dodaj delavca</button></a>
+	<table class="table table-hover">
+		<tr>
+		    <th>Ime</th>
+		    <th>Priimek</th>
+		    <th>Datum Rojstva</th>
+		    <th>Spol</th>
+		    <th></th>
+		    <th></th>
+		</tr>
+		{% for item in data %}
+		<tr name="{{item.id}}">
+		    <td>{{ item.Ime }}</td>
+		    <td>{{ item.Priimek }}</td>
+		    <td>{{ item.DatumRojstva }}</td>
+		    <td>{{ item.Spol }}</td>
+                <td><form method="POST", action="/"> {% csrf_token %}<button type="submit" class="btn btn-danger" name="delete" value="{{ item.id }}">Izbrisi</button></form></td>
+            <td><form method="POST" action="/spremeniD/" > {% csrf_token %}<button type="submit" class="btn btn-primary" name="spremeni" value="{{ item.id }}">Spremeni</button></form></td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

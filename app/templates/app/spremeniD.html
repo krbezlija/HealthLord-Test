@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<form method="POST" action="/spremeniD/" style="margin-top:5px; margin-left:10px;margin-right:10px; width:500px;">
+    {% csrf_token %}
+    <input style="margin:10px;" type="text" class="form-control" value="{{ d.Ime }}" id="Ime" name="Ime">
+    <input style="margin:10px;" type="text" class="form-control" value="{{ d.Priimek }}" id="Priimek" name="Priimek">
+    <input style="margin:10px;" type="date" class="form-control" value="{{ x }}",  id="RojstniDan",  name="RojstniDan">
+
+    <div style="margin:10px; width:100%;" 	class="form-group col-md-4">
+        <select id="inputState" class="form-control" name="Spol">
+            <option selected name="Spol">{{ d.Spol }}</option>
+            <option>Moski</option>
+            <option>Zenski</option>
+            <option>Drugo</option>
+        </select>
+    </div>
+    <div style="margin:10px; width:100%;" 	class="form-group col-md-4">
+        <select id="inputState" class="form-control" name="trg">
+            <option selected name="trgovina">{{ trg }}</option>
+            {% for item in data %}
+                <option>{{ item.Ime }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success" style="margin: 10px;" name="save" value="{{ d.id }}">Spremeni</button>
+    <a href="/"><button type="button" class="btn btn-danger" style="margin: 10px;" name="cancel"">Preklici</button></a>
+</form>
+{% endblock %}

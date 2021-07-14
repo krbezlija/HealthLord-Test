@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<form method="POST" action="/noviDelavec/" style="margin-top:5px; margin-left:10px;margin-right:10px; width:500px;">
+{% csrf_token %}
+		<input style="margin:10px;" type="text" class="form-control" placeholder="Ime" id="Ime" name="Ime">
+		<input style="margin:10px;" type="text" class="form-control" placeholder="Priimek" id="Priimek" name="Priimek">
+		<input style="margin:10px;" type="date" class="form-control" placeholder="Datum Rojstva" id="RojstniDan " name="RojstniDan">
+		<div style="margin:10px; width:100%;" 	class="form-group col-md-4">
+			<select id="inputState" class="form-control" name="Spol">
+				<option selected name="Spol">Izaberi Spol</option>
+				<option>Moski</option>
+				<option>Zenski</option>
+				<option>Drugo</option>
+			</select>
+		</div>
+		<div style="margin:10px; width:100%;" 	class="form-group col-md-4">
+			<select id="inputState" class="form-control" name="trg">
+				<option selected name="trgovina">Izaberi Trgovino</option>
+				{% for item in data %}
+				<option>{{ item.Ime }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<button type="submit" class="btn btn-success" style="margin: 10px;">Dodaj</button>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Sporocilo: </strong> {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}
+
+

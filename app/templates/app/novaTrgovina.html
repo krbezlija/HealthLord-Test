@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<form method="POST" action="/novaTrgovina/" style="margin-top:5px; margin-left:10px;margin-right:10px; width:500px;">{% csrf_token %}
+
+<input style="margin:10px;" type="text" class="form-control" placeholder="Ime trgovine" id="Ime" name="imeT">
+<button class="btn btn-success" style="margin: 10px;" type="submit" value="Submit">Dodaj</button>
+</form>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Sporocilo: </strong> {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock %}

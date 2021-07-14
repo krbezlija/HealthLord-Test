@@ -1,0 +1,16 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <form method="POST" action="/spremeniT/" style="margin-top:5px; margin-left:10px;margin-right:10px; width:500px;">{% csrf_token %}
+        <input style="margin:10px;" type="text" class="form-control" name="imeT" value="{{ t.Ime }}"><br>
+        <button type="submit" class="btn btn-success" style="margin: 10px;" name="save" value="{{ t.id }}">Spremeni</button>
+        <a href="/trgovine/"><button type="button" class="btn btn-danger" style="margin: 10px;" name="cancel"">Preklici</button></a>
+    </form>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                <strong>Pozor: </strong> {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

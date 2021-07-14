@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+	<form method="get", action="/iskanjePoTrg" style="text-align: center; margin-top:2%;">{% csrf_token %}
+
+		<select name="izberiTrgovine" id="izberiTrgovine">
+			    <option value="none">Izberi trgovino</option>
+			{% for item in dataT %}
+			    <option value="{{item.Ime}}">{{ item.Ime }}</option>
+	    	{% endfor %}
+		</select>
+		<button class="btn btn-dark btn-sm", type="submit", name="poTrgovin">Isci</button>
+	</form>
+	{% if ime != None %}
+		<table class="table table-hover">
+			<tr>
+				<th>{{ime}}</th>
+			    <th>Ime</th>
+			    <th>Priimek</th>
+			    <th>Rojstni dan</th>
+			    <th>Spol</th>
+			</tr>
+			{% for item in data %}
+			<tr>
+				<td></td>
+			    <td>{{ item.Ime }}</td>
+			    <td>{{ item.Priimek }}</td>
+			    <td>{{ item.DatumRojstva }}</td>
+			    <td>{{ item.Spol }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+{% endblock %}
